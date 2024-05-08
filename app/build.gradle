@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.newsapp_appcent'
-    compileSdk 33
+    namespace 'com.example.newsappdeneme'
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.newsapp_appcent"
+        applicationId "com.example.newsappdeneme"
         minSdk 28
         targetSdk 33
         versionCode 1
