@@ -11,7 +11,7 @@
         android:icon="@drawable/favorite">
     </item>
     <item
-        android:id="searchFragment"
+        android:id="@+id/searchFragment"
         android:title="Search"
         android:icon="@drawable/search">
     </item>
