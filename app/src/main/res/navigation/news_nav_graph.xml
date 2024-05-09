@@ -7,7 +7,12 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.example.newsapp_appcent.ui.fragments.ArticleFragment"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+
+        <argument
+            android:name="article"
+            app:argType="com.example.newsapp_appcent.models.Article"/>
+    </fragment>
     <fragment
         android:id="@+id/favouriteFragment2"
         android:name="com.example.newsapp_appcent.ui.fragments.FavouriteFragment"

@@ -20,7 +20,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="favouritesFragment">
+                  <entry key="favouriteFragment2">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -31,7 +31,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_favouritesFragment_to_articleFragment">
+                            <entry key="action_favouriteFragment2_to_articleFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
