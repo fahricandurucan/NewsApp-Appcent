@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/news_nav_graph"
     app:startDestination="@id/headlinesFragment">
 
@@ -11,14 +12,14 @@
 
         <argument
             android:name="article"
-            app:argType="com.example.newsapp_appcent.models.Article"/>
+            app:argType="com.example.newsapp_appcent.models.Article" />
     </fragment>
     <fragment
-        android:id="@+id/favouriteFragment2"
+        android:id="@+id/favouriteFragment"
         android:name="com.example.newsapp_appcent.ui.fragments.FavouriteFragment"
         android:label="FavouriteFragment" >
         <action
-            android:id="@+id/action_favouriteFragment2_to_articleFragment"
+            android:id="@+id/action_favouriteFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
     <fragment

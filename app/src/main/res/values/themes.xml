@@ -17,4 +17,11 @@
     <style name = "App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/green</item>
     </style>
+    <style name="Theme.NewsAppAppcent.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.NewsAppAppcent.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.NewsAppAppcent.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
