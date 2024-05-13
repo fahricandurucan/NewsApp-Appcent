@@ -15,6 +15,9 @@
         android:theme="@style/Theme.NewsAppAppcent"
         tools:targetApi="31">
         <activity
+            android:name=".ui.NewsWebActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.NewsDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_news_detail"

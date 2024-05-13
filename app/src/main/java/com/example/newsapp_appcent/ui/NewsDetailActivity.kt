@@ -1,8 +1,10 @@
 package com.example.newsapp_appcent.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
@@ -51,6 +53,14 @@ class NewsDetailActivity : AppCompatActivity() {
             newsViewModel.addToFavourites(article)
             val rootView = findViewById<View>(android.R.id.content)
             Snackbar.make(rootView,"Added to favourites", Snackbar.LENGTH_LONG).show()
+        }
+
+        // NewsSource butonuna tıklandığında NewsWebActivity'e geçiş yap
+        val buttonSource = findViewById<Button>(R.id.buttonSource)
+        buttonSource.setOnClickListener {
+            val intent = Intent(this, NewsWebActivity::class.java)
+            intent.putExtra("url", article.url) // URL'yi intent ile aktar
+            startActivity(intent)
         }
     }
 }
