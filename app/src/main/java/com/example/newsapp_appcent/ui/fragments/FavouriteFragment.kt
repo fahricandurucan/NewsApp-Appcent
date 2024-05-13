@@ -1,6 +1,7 @@
 package com.example.newsapp_appcent.ui.fragments
 
 import android.content.ClipData.Item
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.newsapp_appcent.R
 import com.example.newsapp_appcent.adapters.NewsAdapter
 import com.example.newsapp_appcent.databinding.FragmentFavouriteBinding
 import com.example.newsapp_appcent.ui.NewsActivity
+import com.example.newsapp_appcent.ui.NewsDetailActivity
 import com.example.newsapp_appcent.ui.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -32,11 +34,18 @@ class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
         newsViewModel = (activity as NewsActivity).newsViewModel
         setupFavouritesRecycler()
 
-        newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("article",it)
-            }
-            findNavController().navigate(R.id.action_favouriteFragment_to_articleFragment,bundle)
+//        newsAdapter.setOnItemClickListener {
+//            val bundle = Bundle().apply {
+//                putSerializable("article",it)
+//            }
+//            findNavController().navigate(R.id.action_favouriteFragment_to_articleFragment,bundle)
+//        }
+
+        // Go to detail page
+        newsAdapter.setOnItemClickListener { article ->
+            val intent = Intent(requireContext(), NewsDetailActivity::class.java)
+            intent.putExtra("article", article)
+            startActivity(intent)
         }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN,
