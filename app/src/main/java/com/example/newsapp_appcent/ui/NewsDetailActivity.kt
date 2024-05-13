@@ -13,6 +13,7 @@ import com.example.newsapp_appcent.R
 import com.example.newsapp_appcent.db.ArticleDatabase
 import com.example.newsapp_appcent.models.Article
 import com.example.newsapp_appcent.repository.NewsRepository
+import com.example.newsapp_appcent.util.Constant
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 //import kotlinx.coroutines.flow.internal.NoOpContinuation.context
@@ -37,7 +38,7 @@ class NewsDetailActivity : AppCompatActivity() {
 
         val imageViewArticle = findViewById<ImageView>(R.id.imageViewArticle)
         val textViewTitle = findViewById<TextView>(R.id.textViewTitle)
-        val textViewAuthor = findViewById<TextView>(R.id.textViewAuthor)
+        val textViewSource = findViewById<TextView>(R.id.textViewSource)
         val textViewDate = findViewById<TextView>(R.id.textViewDate)
         val textViewDescription = findViewById<TextView>(R.id.textViewDescription)
 
@@ -46,23 +47,16 @@ class NewsDetailActivity : AppCompatActivity() {
         // Gerekli görünümleri haber detaylarıyla güncelle
         Glide.with(this).load(article.urlToImage).into(imageViewArticle)
         textViewTitle.text = article.title
-        textViewAuthor.text = article.author
-        textViewDate.text = article.publishedAt
+        textViewSource.text = article.source.name
+        textViewDate.text = Constant.convertDate(article.publishedAt)
         textViewDescription.text = article.description
 
-//        val fabButton = findViewById<FloatingActionButton>(R.id.fab)
-//
-//        fabButton.setOnClickListener {
-//            newsViewModel.addToFavourites(article)
-//            val rootView = findViewById<View>(android.R.id.content)
-//            Snackbar.make(rootView,"Added to favourites", Snackbar.LENGTH_LONG).show()
-//        }
 
         // NewsSource butonuna tıklandığında NewsWebActivity'e geçiş yap
         val buttonSource = findViewById<Button>(R.id.buttonSource)
         buttonSource.setOnClickListener {
             val intent = Intent(this, NewsWebActivity::class.java)
-            intent.putExtra("url", article.url) // URL'yi intent ile aktar
+            intent.putExtra("url", article.url)
             startActivity(intent)
         }
 
