@@ -20,6 +20,9 @@ import com.google.android.material.snackbar.Snackbar
 
 class NewsDetailActivity : AppCompatActivity() {
     lateinit var newsViewModel: NewsViewModel
+    private lateinit var backButton: ImageView
+    private lateinit var shareButton: ImageView
+    private lateinit var favButton: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +50,13 @@ class NewsDetailActivity : AppCompatActivity() {
         textViewDate.text = article.publishedAt
         textViewDescription.text = article.description
 
-        val fabButton = findViewById<FloatingActionButton>(R.id.fab)
-
-        fabButton.setOnClickListener {
-            newsViewModel.addToFavourites(article)
-            val rootView = findViewById<View>(android.R.id.content)
-            Snackbar.make(rootView,"Added to favourites", Snackbar.LENGTH_LONG).show()
-        }
+//        val fabButton = findViewById<FloatingActionButton>(R.id.fab)
+//
+//        fabButton.setOnClickListener {
+//            newsViewModel.addToFavourites(article)
+//            val rootView = findViewById<View>(android.R.id.content)
+//            Snackbar.make(rootView,"Added to favourites", Snackbar.LENGTH_LONG).show()
+//        }
 
         // NewsSource butonuna tıklandığında NewsWebActivity'e geçiş yap
         val buttonSource = findViewById<Button>(R.id.buttonSource)
@@ -62,5 +65,33 @@ class NewsDetailActivity : AppCompatActivity() {
             intent.putExtra("url", article.url) // URL'yi intent ile aktar
             startActivity(intent)
         }
+
+
+        backButton = findViewById(R.id.backButton)
+        shareButton = findViewById(R.id.shareButton)
+        favButton = findViewById(R.id.favButton)
+
+        backButton.setOnClickListener {
+            finish()
+        }
+        shareButton.setOnClickListener {
+            shareNews()
+        }
+        favButton.setOnClickListener {
+            newsViewModel.addToFavourites(article)
+            val rootView = findViewById<View>(android.R.id.content)
+            Snackbar.make(rootView,"Added to favourites", Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    private fun shareNews() {
+        // Haberi paylaşmak için bir Intent oluştur
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Haber Başlığı")
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Haber Metni")
+
+        // Intent'i başlat ve paylaşılacak uygulamaları seç
+        startActivity(Intent.createChooser(shareIntent, "Haberi Paylaş"))
     }
 }
