@@ -18,14 +18,4 @@ interface NewsApi {
         @Query("apiKey")
         apiKey: String = API_KEY
     ):Response<NewsResponse>
-    @GET("v2/everything")
-    suspend fun getNews(
-        @Query("q")
-        query: String,
-        @Query("page")
-        page: Int = 1,
-        @Query("apiKey")
-        apiKey: String = API_KEY,
-    ):Response<NewsResponse>
-
 }

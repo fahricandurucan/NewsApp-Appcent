@@ -35,10 +35,6 @@ class NewsViewModel(app:Application, val newsRepository: NewsRepository) : Andro
         headlinesInternet(countryCode)
     }
 
-    fun searchNews(searchQuery: String) = viewModelScope.launch {
-        searchNewsInternet(searchQuery)
-    }
-
     private fun handleHeadlinesNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse>{
         if (response.isSuccessful){
             response.body()?.let { resultResponse ->
@@ -99,28 +95,6 @@ class NewsViewModel(app:Application, val newsRepository: NewsRepository) : Andro
             } ?: false
         }
     }
-
-    private suspend fun searchNewsInternet(searchQuery:String){
-        newSearchQuery = searchQuery
-        searchNews.postValue(Resource.Loading())
-        try {
-            if(internetConnection(this.getApplication())){
-                val response = newsRepository.getNews(searchQuery,searchNewsPage)
-                searchNews.postValue(handleSearchNewsResponse(response))
-            }
-            else{
-                searchNews.postValue(Resource.Error("No internet connection"))
-            }
-        }catch (t:Throwable){
-            when(t){
-                is IOException -> searchNews.postValue(Resource.Error("Unable to connect"))
-                else -> searchNews.postValue(Resource.Error("No signal"))
-            }
-
-        }
-    }
-
-
 
     private suspend fun headlinesInternet(countryCode:String){
         headlines.postValue(Resource.Loading())

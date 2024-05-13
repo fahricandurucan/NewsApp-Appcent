@@ -34,12 +34,6 @@ class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
         newsViewModel = (activity as NewsActivity).newsViewModel
         setupFavouritesRecycler()
 
-//        newsAdapter.setOnItemClickListener {
-//            val bundle = Bundle().apply {
-//                putSerializable("article",it)
-//            }
-//            findNavController().navigate(R.id.action_favouriteFragment_to_articleFragment,bundle)
-//        }
 
         // Go to detail page
         newsAdapter.setOnItemClickListener { article ->

@@ -68,15 +68,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
         }
 
 
-//        newsAdapter.setOnItemClickListener {
-//            val bundle = Bundle().apply {
-//                putSerializable("article",it)
-//            }
-//            findNavController().navigate(R.id.action_headlinesFragment_to_articleFragment,bundle)
-//            binding.searchEdit.text.clear() // clear searchtxt
-//        }
-
-
         // for search
         binding.searchEdit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

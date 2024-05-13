@@ -32,8 +32,8 @@ class NewsDetailActivity : AppCompatActivity() {
         // fab butonun çalışması için yazıldı
         val articleDatabase = ArticleDatabase(this)
         val newsRepository = NewsRepository(articleDatabase)
-        val viewModelFactory = NewsViewModelFactory(application, newsRepository) // NewsViewModelFactory'nin oluşturulması
-        val newsViewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java) // ViewModelProvider aracılığıyla NewsViewModel'ın oluşturulması
+        val viewModelFactory = NewsViewModelFactory(application, newsRepository)
+        val newsViewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java)
 
 
         val imageViewArticle = findViewById<ImageView>(R.id.imageViewArticle)
@@ -44,7 +44,6 @@ class NewsDetailActivity : AppCompatActivity() {
 
 
         val article = intent.getSerializableExtra("article") as Article
-        // Gerekli görünümleri haber detaylarıyla güncelle
         Glide.with(this).load(article.urlToImage).into(imageViewArticle)
         textViewTitle.text = article.title
         textViewSource.text = article.source.name
@@ -52,7 +51,6 @@ class NewsDetailActivity : AppCompatActivity() {
         textViewDescription.text = article.description
 
 
-        // NewsSource butonuna tıklandığında NewsWebActivity'e geçiş yap
         val buttonSource = findViewById<Button>(R.id.buttonSource)
         buttonSource.setOnClickListener {
             val intent = Intent(this, NewsWebActivity::class.java)
@@ -79,13 +77,11 @@ class NewsDetailActivity : AppCompatActivity() {
     }
 
     private fun shareNews() {
-        // Haberi paylaşmak için bir Intent oluştur
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.type = "text/plain"
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Haber Başlığı")
         shareIntent.putExtra(Intent.EXTRA_TEXT, "Haber Metni")
 
-        // Intent'i başlat ve paylaşılacak uygulamaları seç
         startActivity(Intent.createChooser(shareIntent, "Haberi Paylaş"))
     }
 }

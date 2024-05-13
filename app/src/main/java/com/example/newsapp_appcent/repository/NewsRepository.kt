@@ -11,8 +11,6 @@ class NewsRepository(val db:ArticleDatabase) {
     suspend fun getHeadlines(countryCode: String,pageNumber: Int) =
         RetrofitInstance.api.getHeadlines(countryCode,pageNumber)
 
-    suspend fun getNews(query:String,page:Int) =
-        RetrofitInstance.api.getNews(query,page)
 
     suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
 
