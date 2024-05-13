@@ -26,5 +26,7 @@ class NewsActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
 
+        var action = supportActionBar
+        action!!.title = "NewsFlasher"
     }
 }

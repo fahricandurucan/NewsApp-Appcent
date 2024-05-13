@@ -11,6 +11,8 @@ class NewsWebActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_web)
 
+        supportActionBar?.hide()
+
         val webView = findViewById<WebView>(R.id.webView)
 
         val url = intent.getStringExtra("url")
