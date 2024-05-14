@@ -5,9 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.newsapp_appcent.models.Article
 import com.example.newsapp_appcent.models.NewsResponse
 import com.example.newsapp_appcent.repository.NewsRepository
@@ -17,6 +15,13 @@ import retrofit2.Response
 import java.io.IOException
 
 class NewsViewModel(app:Application, val newsRepository: NewsRepository) : AndroidViewModel(app) {
+    val favouriteArticles: LiveData<List<Article>> = newsRepository.getFavouriteNews()
+
+    val isEmptyFavourites: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+        addSource(favouriteArticles) { articles ->
+            value = articles.isEmpty()
+        }
+    }
 
     val headlines: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var headlinesPage = 1

@@ -70,9 +70,23 @@ class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
             attachToRecyclerView(binding.recyclerFavourites)
         }
 
-        newsViewModel.getFavouriteNews().observe(viewLifecycleOwner, Observer { articles ->
-            newsAdapter.differ.submitList(articles)
+
+        newsViewModel.isEmptyFavourites.observe(viewLifecycleOwner, { isEmpty ->
+            if (isEmpty) {
+                binding.textViewEmptyFavourites.visibility = View.VISIBLE
+                binding.recyclerFavourites.visibility = View.GONE
+            } else {
+                binding.textViewEmptyFavourites.visibility = View.GONE
+                binding.recyclerFavourites.visibility = View.VISIBLE
+                newsViewModel.getFavouriteNews().observe(viewLifecycleOwner, Observer { articles ->
+                    newsAdapter.differ.submitList(articles)
+                })
+            }
         })
+
+
+
+
 
     }
 

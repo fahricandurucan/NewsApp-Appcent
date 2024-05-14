@@ -12,9 +12,20 @@ class NewsRepository(val db:ArticleDatabase) {
         RetrofitInstance.api.getHeadlines(countryCode,pageNumber)
 
 
-    suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
+//    suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
 
-     fun getFavouriteNews() = db.getArticleDao().getAllArticles()
+    suspend fun upsert(article: Article): Boolean {
+        val existingArticle = db.getArticleDao().getArticleByUrl(article.url.toString())
+
+        if (existingArticle == null) {
+            db.getArticleDao().upsert(article)
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    fun getFavouriteNews() = db.getArticleDao().getAllArticles()
 
     suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteAllArticles(article)
 }
