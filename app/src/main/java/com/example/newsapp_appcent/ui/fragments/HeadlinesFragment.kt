@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp_appcent.R
 import com.example.newsapp_appcent.adapters.NewsAdapter
+//import com.example.newsapp_appcent.adapters.NewsAdapter
 import com.example.newsapp_appcent.databinding.FragmentHeadlinesBinding
 import com.example.newsapp_appcent.models.Article
 import com.example.newsapp_appcent.ui.NewsActivity
@@ -71,17 +72,14 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
         // for search
         binding.searchEdit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Metin değişmeden önceki işlemler burada yapılabilir
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Metin değiştikçe yapılacak işlemler burada yapılabilir
                 val searchText = s.toString().trim()
                 filterHeadlines(searchText)
             }
 
             override fun afterTextChanged(s: Editable?) {
-                // Metin değiştikten sonra yapılacak işlemler burada yapılabilir
             }
         })
 

@@ -22,12 +22,6 @@ class NewsViewModel(app:Application, val newsRepository: NewsRepository) : Andro
     var headlinesPage = 1
     var headlinesResponse : NewsResponse? = null
 
-    val searchNews : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    var searchNewsPage = 1
-    var searchNewsResponse : NewsResponse? = null
-    var newSearchQuery: String? = null
-    var oldSearchQuery: String? = null
-
     init {
         getHeadlines("besiktas")
     }
@@ -53,29 +47,10 @@ class NewsViewModel(app:Application, val newsRepository: NewsRepository) : Andro
         return Resource.Error(response.message())
     }
 
-    private fun handleSearchNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse>{
-        if (response.isSuccessful){
-            response.body()?.let { resultResponse ->
-                if(searchNewsResponse == null || newSearchQuery != oldSearchQuery){
-                    searchNewsPage = 1
-                    oldSearchQuery = newSearchQuery
-                    searchNewsResponse = resultResponse
-                }
-                else{
-                    searchNewsPage++
-                    val oldArticles = searchNewsResponse?.articles
-                    val newArticles = resultResponse.articles
-                    oldArticles?.addAll(newArticles)
-                }
-                return Resource.Success(searchNewsResponse ?: resultResponse)
-            }
-        }
-        return Resource.Error(response.message())
-    }
-
     fun addToFavourites(article: Article) = viewModelScope.launch {
         newsRepository.upsert(article)
     }
+
 
      fun getFavouriteNews() = newsRepository.getFavouriteNews()
 

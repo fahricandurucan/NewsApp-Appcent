@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Author"
-        android:textColor="@color/subtitle_color"
+        android:textColor="@color/secondary_color"
         android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
@@ -42,7 +42,7 @@
         android:layout_marginTop="8dp"
         android:text="Date"
         android:textAllCaps="false"
-        android:textColor="@color/subtitle_color"
+        android:textColor="@color/secondary_color"
         android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
@@ -105,7 +105,7 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/favorite" />
+        app:srcCompat="@drawable/favorite_border" />
 
     <ImageView
         android:id="@+id/shareButton"

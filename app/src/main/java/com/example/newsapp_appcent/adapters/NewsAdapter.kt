@@ -14,6 +14,7 @@ import com.example.newsapp_appcent.models.Article
 import com.example.newsapp_appcent.util.Constant
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+    private var favoriteArticles: HashSet<String> = HashSet()
 
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     lateinit var articleImage: ImageView
@@ -78,5 +79,8 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     }
 
     private var onItemClickListener: ((Article) -> Unit)? = null
+
+
+    
 
 }

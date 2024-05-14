@@ -16,8 +16,7 @@ import com.example.newsapp_appcent.repository.NewsRepository
 import com.example.newsapp_appcent.util.Constant
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-//import kotlinx.coroutines.flow.internal.NoOpContinuation.context
-//import kotlin.coroutines.jvm.internal.CompletedContinuation.context
+
 
 class NewsDetailActivity : AppCompatActivity() {
     lateinit var newsViewModel: NewsViewModel
@@ -29,11 +28,11 @@ class NewsDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_detail)
 
-        // fab butonun çalışması için yazıldı
+        // fav butonun çalışması için yazıldı
         val articleDatabase = ArticleDatabase(this)
         val newsRepository = NewsRepository(articleDatabase)
         val viewModelFactory = NewsViewModelFactory(application, newsRepository)
-        val newsViewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java)
+        newsViewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java)
 
 
         val imageViewArticle = findViewById<ImageView>(R.id.imageViewArticle)
